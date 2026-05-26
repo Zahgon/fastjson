@@ -1,9 +1,5 @@
 package fastjson
 
-import (
-	"strconv"
-)
-
 // Arena may be used for fast creation and re-use of Values.
 //
 // Typical Arena lifecycle:
@@ -23,104 +19,60 @@ type Arena struct {
 // Reset resets all the Values allocated by a.
 //
 // Values previously allocated by a cannot be used after the Reset call.
-func (a *Arena) Reset() {
-	a.b = a.b[:0]
-	a.c.reset()
-}
+func (a *Arena) Reset() { _ = "STUB: not implemented"; return }
 
 // NewObject returns new empty object value.
 //
 // New entries may be added to the returned object via Set call.
 //
 // The returned object is valid until Reset is called on a.
-func (a *Arena) NewObject() *Value {
-	v := a.c.getValue()
-	v.t = TypeObject
-	v.o.reset()
-	return v
-}
+func (a *Arena) NewObject() *Value { _ = "STUB: not implemented"; return nil }
 
 // NewArray returns new empty array value.
 //
 // New entries may be added to the returned array via Set* calls.
 //
 // The returned array is valid until Reset is called on a.
-func (a *Arena) NewArray() *Value {
-	v := a.c.getValue()
-	v.t = TypeArray
-	v.a = v.a[:0]
-	return v
-}
+func (a *Arena) NewArray() *Value { _ = "STUB: not implemented"; return nil }
 
 // NewString returns new string value containing s.
 //
 // The returned string is valid until Reset is called on a.
-func (a *Arena) NewString(s string) *Value {
-	v := a.c.getValue()
-	v.t = typeRawString
-	bLen := len(a.b)
-	a.b = escapeString(a.b, s)
-	v.s = b2s(a.b[bLen+1 : len(a.b)-1])
-	return v
-}
+func (a *Arena) NewString(s string) *Value { _ = "STUB: not implemented"; return nil }
 
 // NewStringBytes returns new string value containing b.
 //
 // The returned string is valid until Reset is called on a.
-func (a *Arena) NewStringBytes(b []byte) *Value {
-	v := a.c.getValue()
-	v.t = typeRawString
-	bLen := len(a.b)
-	a.b = escapeString(a.b, b2s(b))
-	v.s = b2s(a.b[bLen+1 : len(a.b)-1])
-	return v
-}
+func (a *Arena) NewStringBytes(b []byte) *Value { _ = "STUB: not implemented"; return nil }
 
 // NewNumberFloat64 returns new number value containing f.
 //
 // The returned number is valid until Reset is called on a.
-func (a *Arena) NewNumberFloat64(f float64) *Value {
-	v := a.c.getValue()
-	v.t = TypeNumber
-	bLen := len(a.b)
-	a.b = strconv.AppendFloat(a.b, f, 'g', -1, 64)
-	v.s = b2s(a.b[bLen:])
-	return v
-}
+func (a *Arena) NewNumberFloat64(f float64) *Value { _ = "STUB: not implemented"; return nil }
 
 // NewNumberInt returns new number value containing n.
 //
 // The returned number is valid until Reset is called on a.
-func (a *Arena) NewNumberInt(n int) *Value {
-	v := a.c.getValue()
-	v.t = TypeNumber
-	bLen := len(a.b)
-	a.b = strconv.AppendInt(a.b, int64(n), 10)
-	v.s = b2s(a.b[bLen:])
-	return v
-}
+func (a *Arena) NewNumberInt(n int) *Value { _ = "STUB: not implemented"; return nil }
 
 // NewNumberString returns new number value containing s.
 //
 // The returned number is valid until Reset is called on a.
-func (a *Arena) NewNumberString(s string) *Value {
-	v := a.c.getValue()
-	v.t = TypeNumber
-	v.s = s
-	return v
-}
+func (a *Arena) NewNumberString(s string) *Value { _ = "STUB: not implemented"; return nil }
 
 // NewNull returns null value.
 func (a *Arena) NewNull() *Value {
-	return valueNull
+	_ = "STUB: not implemented"
+
+	// NewTrue returns true value.
+	return nil
 }
 
-// NewTrue returns true value.
 func (a *Arena) NewTrue() *Value {
-	return valueTrue
+	_ = "STUB: not implemented"
+
+	// NewFalse return false value.
+	return nil
 }
 
-// NewFalse return false value.
-func (a *Arena) NewFalse() *Value {
-	return valueFalse
-}
+func (a *Arena) NewFalse() *Value { _ = "STUB: not implemented"; return nil }

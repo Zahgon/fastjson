@@ -33,62 +33,31 @@ type Scanner struct {
 // Init initializes sc with the given s.
 //
 // s may contain multiple JSON values, which may be delimited by whitespace.
-func (sc *Scanner) Init(s string) {
-	sc.b = append(sc.b[:0], s...)
-	sc.s = b2s(sc.b)
-	sc.err = nil
-	sc.v = nil
-}
+func (sc *Scanner) Init(s string) { _ = "STUB: not implemented"; return }
 
 // InitBytes initializes sc with the given b.
 //
 // b may contain multiple JSON values, which may be delimited by whitespace.
 func (sc *Scanner) InitBytes(b []byte) {
-	sc.Init(b2s(b))
+	_ = "STUB: not implemented"
+
+	// Next parses the next JSON value from s passed to Init.
+	//
+	// Returns true on success. The parsed value is available via Value call.
+	//
+	// Returns false either on error or on the end of s.
+	// Call Error in order to determine the cause of the returned false.
+	return
 }
 
-// Next parses the next JSON value from s passed to Init.
-//
-// Returns true on success. The parsed value is available via Value call.
-//
-// Returns false either on error or on the end of s.
-// Call Error in order to determine the cause of the returned false.
-func (sc *Scanner) Next() bool {
-	if sc.err != nil {
-		return false
-	}
-
-	sc.s = skipWS(sc.s)
-	if len(sc.s) == 0 {
-		sc.err = errEOF
-		return false
-	}
-
-	sc.c.reset()
-	v, tail, err := sc.c.parseValue(sc.s, 0)
-	if err != nil {
-		sc.err = err
-		return false
-	}
-
-	sc.s = tail
-	sc.v = v
-	return true
-}
+func (sc *Scanner) Next() bool { _ = "STUB: not implemented"; return false }
 
 // Error returns the last error.
-func (sc *Scanner) Error() error {
-	if sc.err == errEOF {
-		return nil
-	}
-	return sc.err
-}
+func (sc *Scanner) Error() error { _ = "STUB: not implemented"; return nil }
 
 // Value returns the last parsed value.
 //
 // The value is valid until the Next call.
-func (sc *Scanner) Value() *Value {
-	return sc.v
-}
+func (sc *Scanner) Value() *Value { _ = "STUB: not implemented"; return nil }
 
 var errEOF = errors.New("end of s")
